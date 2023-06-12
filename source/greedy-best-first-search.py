@@ -14,7 +14,8 @@ def visualize_maze(matrix, bonus, start, end, route=None):
       4. route: The route from the starting point to the ending one, defined by an array of (x, y), e.g. route = [(1, 2), (1, 3), (1, 4)]
     """
     # 1. Define walls and array of direction based on the route
-    walls = [(i, j) for i in range(len(matrix)) for j in range(len(matrix[0])) if matrix[i][j] == 'x']
+    walls = [(i, j) for i in range(len(matrix))
+             for j in range(len(matrix[0])) if matrix[i][j] == 'x']
 
     if route:
         direction = []
@@ -61,7 +62,8 @@ def visualize_maze(matrix, bonus, start, end, route=None):
     print(f'Ending point (x, y) = {end[0], end[1]}')
 
     for _, point in enumerate(bonus):
-        print(f'Bonus point at position (x, y) = {point[0], point[1]} with point {point[2]}')
+        print(
+            f'Bonus point at position (x, y) = {point[0], point[1]} with point {point[2]}')
 
 
 def read_file(file_name: str = 'maze.txt'):
@@ -202,7 +204,8 @@ if __name__ == '__main__':
 
     fwdPath, aPath = greedy(matrix, start, end, heuristic)
     route = [end, *fwdPath][::-1]
-    t = timeit(stmt='greedy(matrix, start, end, heuristic)', number=1000, globals=globals())
+    t = timeit(stmt='greedy(matrix, start, end, heuristic)',
+               number=1000, globals=globals())
     print(f'GBFS time: {t}')
     print(f'GBFS search length: {len(aPath)}')
     print(f'GBFS path length: {len(fwdPath)}')

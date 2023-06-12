@@ -12,7 +12,8 @@ def visualize_maze(matrix, bonus, start, end, route=None):
       4. route: The route from the starting point to the ending one, defined by an array of (x, y), e.g. route = [(1, 2), (1, 3), (1, 4)]
     """
     # 1. Define walls and array of direction based on the route
-    walls = [(i, j) for i in range(len(matrix)) for j in range(len(matrix[0])) if matrix[i][j] == 'x']
+    walls = [(i, j) for i in range(len(matrix))
+             for j in range(len(matrix[0])) if matrix[i][j] == 'x']
 
     if route:
         direction = []
@@ -59,7 +60,8 @@ def visualize_maze(matrix, bonus, start, end, route=None):
     print(f'Ending point (x, y) = {end[0], end[1]}')
 
     for _, point in enumerate(bonus):
-        print(f'Bonus point at position (x, y) = {point[0], point[1]} with point {point[2]}')
+        print(
+            f'Bonus point at position (x, y) = {point[0], point[1]} with point {point[2]}')
 
 
 def read_file(file_name: str = 'maze.txt'):
@@ -74,6 +76,7 @@ def read_file(file_name: str = 'maze.txt'):
     matrix = [list(i) for i in text.splitlines()]
     f.close()
     return bonus_points, matrix
+
 
 def maze_map_render(grid):
     """
@@ -96,7 +99,6 @@ def maze_map_render(grid):
                 if matrix[cell[0] + 1][cell[1]] != 'x':
                     maze_map[cell]['S'] = 1
     return maze_map
-
 
 
 def dfs(matrix, start, end):
@@ -134,7 +136,7 @@ def dfs(matrix, start, end):
     return fwdPath, dfsPath
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
 
     file_name = sys.argv[1]
     bonus_points, matrix = read_file(file_name)
@@ -145,12 +147,12 @@ if __name__=='__main__':
 
     for i in range(len(matrix)):
         for j in range(len(matrix[0])):
-            if matrix[i][j]=='S':
-                start=(i,j)
+            if matrix[i][j] == 'S':
+                start = (i, j)
 
-            elif matrix[i][j]==' ':
-                if (i==0) or (i==len(matrix)-1) or (j==0) or (j==len(matrix[0])-1):
-                    end=(i,j)
+            elif matrix[i][j] == ' ':
+                if (i == 0) or (i == len(matrix)-1) or (j == 0) or (j == len(matrix[0])-1):
+                    end = (i, j)
             else:
                 pass
 
@@ -161,4 +163,4 @@ if __name__=='__main__':
     print(f'DFS search length: {len(aPath)}')
     print(f'DFS path length: {len(fwdPath)}')
     print(f'The way to the destination: {route}')
-    visualize_maze(matrix,bonus_points,start,end, route)
+    visualize_maze(matrix, bonus_points, start, end, route)

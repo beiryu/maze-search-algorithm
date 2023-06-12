@@ -14,7 +14,8 @@ def visualize_maze(matrix, bonus, start, end, route=None):
       4. route: The route from the starting point to the ending one, defined by an array of (x, y), e.g. route = [(1, 2), (1, 3), (1, 4)]
     """
     # 1. Define walls and array of direction based on the route
-    walls = [(i, j) for i in range(len(matrix)) for j in range(len(matrix[0])) if matrix[i][j] == 'x']
+    walls = [(i, j) for i in range(len(matrix))
+             for j in range(len(matrix[0])) if matrix[i][j] == 'x']
 
     if route:
         direction = []
@@ -61,7 +62,8 @@ def visualize_maze(matrix, bonus, start, end, route=None):
     print(f'Ending point (x, y) = {end[0], end[1]}')
 
     for _, point in enumerate(bonus):
-        print(f'Bonus point at position (x, y) = {point[0], point[1]} with point {point[2]}')
+        print(
+            f'Bonus point at position (x, y) = {point[0], point[1]} with point {point[2]}')
 
 
 def read_file(file_name: str = 'maze.txt'):
@@ -138,7 +140,7 @@ def maze_map_render(grid):
 
 
 def dijkstra(matrix, start, end, bonus_points):
-    grid=[(i,j) for i in range(len(matrix)) for j in range(len(matrix[0]))]
+    grid = [(i, j) for i in range(len(matrix)) for j in range(len(matrix[0]))]
     unvisited = {n: float('inf') for n in grid}
     unvisited[start] = 0
     visited = {}
@@ -204,7 +206,8 @@ if __name__ == '__main__':
 
     fwdPath, c = dijkstra(matrix, start, end, bonus_points)
     route = [end, *fwdPath][::-1]
-    t = timeit(stmt='dijkstra(matrix, start, end, bonus_points)', number=1000, globals=globals())
+    t = timeit(stmt='dijkstra(matrix, start, end, bonus_points)',
+               number=1000, globals=globals())
     print(f'Time: {t}')
     print(f'Cost: {c}')
     print(f'The way to the destination: {route}')
